@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CodingExercisePaymentGateway
 {
-    class PaymentGatewayDBContext:DbContext
+    public class PaymentGatewayDBContext:DbContext
     {
 
         public PaymentGatewayDBContext(DbContextOptions<PaymentGatewayDBContext> options)
@@ -19,5 +19,12 @@ namespace CodingExercisePaymentGateway
 
         public DbSet<Payment> payments { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Payment>()
+                .Property(p => p.Amount)
+                .HasColumnType("decimal(18,4)");
+        }
     }
 }

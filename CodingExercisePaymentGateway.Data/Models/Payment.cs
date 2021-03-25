@@ -20,6 +20,8 @@ namespace CodingExercisePaymentGateway.Data.Models
 
         public decimal Amount { get; set; }
 
+        public PaymentState PaymentState { get; set; }
+
 
     }
 }
